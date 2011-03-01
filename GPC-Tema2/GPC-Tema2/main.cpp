@@ -203,7 +203,47 @@ void Display8(){
 	}
 	glEnd();
 }
-
+// 3.1 Lemniscata lui Bernoulli
+// In formula era +-a, astfel am mers de doua ori, odata cu a si odata cu minus a
+// Intervalul era [-PI/4,PI/4]
+// Insa am mers cu [PI/4,-PI/4] si [-PI/4,PI/4]
+// din motivul ca Vertex "facea legatura" intre alte puncte
+// caci primul "for" deseneaza o jumatate, iar al doilea cealalta
+//si daca mergi altfel el poate sa uneasca punctele de sus, ci nu cele pe diagonala
+void Display9(){
+	glColor3f(1,0.1,0.1); // rosu
+	double x,y,a,b,t,r,R;
+	a=0.4;
+	glBegin(GL_LINE_STRIP);
+	for(t=0.785;t>=-0.785;t-=0.005){ // cazul in care este +a
+	r=a*sqrt(2*cos(2*t));
+	x=r*cos(t);
+	y=r*sin(t);
+	glVertex2d(x,y);
+	}
+	for(t=-0.785;t<=0.785;t+=0.005){  // cazul cand e -a 
+	r=-a*sqrt(2*cos(2*t)); 
+	x=r*cos(t);
+	y=r*sin(t);
+	glVertex2d(x,y);
+	}
+	glEnd();
+}
+//3.2 Spirala Logaritmica
+void Display10(){
+	glColor3f(1,0.1,0.1); // rosu
+	double x,y,a,b,t,r,R;
+	a=0.02;
+	glBegin(GL_LINE_STRIP);
+	for(t=0;t<=10;t+=0.01){
+	r=a*pow(2.71,1+t);
+	x=r*cos(t);
+	y=r*sin(t);
+	glVertex2d(x,y);
+		
+	}
+	glEnd();
+}
 void Init(void) {
 
    glClearColor(1.0,1.0,1.0,1.0);
@@ -242,6 +282,12 @@ void Display(void) {
       break;
 	  case '8':
       Display8();
+      break;
+	  case '9':
+      Display9();
+      break;
+	   case '0':
+      Display10();
       break;
    default:
       break;
